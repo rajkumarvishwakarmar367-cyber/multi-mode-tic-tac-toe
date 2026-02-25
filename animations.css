@@ -1,0 +1,51 @@
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@keyframes pulse-text {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+@keyframes win-pulse {
+  0%,100% { box-shadow: 0 0 20px var(--win-glow); }
+  50%      { box-shadow: 0 0 38px var(--win-glow); }
+}
+
+@keyframes bounce {
+  0%   { transform: scale(0); }
+  70%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes dot-bounce {
+  0%,100% { transform: translateY(0); opacity: 0.6; }
+  50%      { transform: translateY(-8px); opacity: 1; }
+}
+
+@keyframes score-bump {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+@keyframes particle-fly {
+  0%   { transform: translate(0,0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx),var(--dy)) scale(0); opacity: 0; }
+}
+
+@keyframes confetti-fall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh)  rotate(720deg); opacity: 0; }
+}
+
+/* ─── REUSABLE CLASSES ─── */
+.confetti {
+  position: fixed; z-index: 200; pointer-events: none;
+  animation: confetti-fall linear forwards;
+}
+.particle {
+  position: absolute; width: 6px; height: 6px; border-radius: 50%;
+  animation: particle-fly 1s ease-out forwards;
+}

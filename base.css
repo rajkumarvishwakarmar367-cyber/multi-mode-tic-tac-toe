@@ -1,0 +1,113 @@
+/* ─── RESET ─── */
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+/* ─── BODY ─── */
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none; z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(96,165,250,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(244,114,182,0.06) 0%, transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ─── SCREENS ─── */
+.screen {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10; padding: 20px;
+  transition: opacity 0.45s, transform 0.45s;
+}
+.screen.hidden {
+  opacity: 0; pointer-events: none; transform: scale(0.96);
+}
+
+/* Game screen is not fixed */
+#game-screen {
+  position: relative; z-index: 10;
+  width: 100%; max-width: 520px;
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+#game-screen.hidden { display: none; }
+
+/* ─── SHARED BUTTONS ─── */
+.btn-primary {
+  padding: 14px 24px;
+  background: var(--btn-primary);
+  border: none; border-radius: 12px;
+  color: #fff;
+  font-family: 'Orbitron', monospace;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(59,130,246,0.35);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(59,130,246,0.5); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  padding: 13px 24px;
+  background: var(--btn-secondary);
+  border: 1px solid var(--border); border-radius: 12px;
+  color: var(--text-muted);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--border-bright); color: var(--text); }
+
+.btn-ghost {
+  padding: 10px 24px;
+  background: transparent; border: none;
+  color: var(--text-muted);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px; font-weight: 500; letter-spacing: 2px;
+  cursor: pointer; transition: all 0.2s;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.btn-ghost:hover { color: var(--text); }
+
+/* ─── ICON BUTTONS ─── */
+.icon-btn {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-muted); font-size: 16px;
+  transition: all 0.2s; position: relative;
+}
+.icon-btn:hover { border-color: var(--border-bright); color: var(--text); transform: scale(1.05); }
+
+.icon-btn[title]:hover::after {
+  content: attr(title);
+  position: absolute; bottom: -30px; right: 0;
+  background: var(--bg3); color: var(--text);
+  font-size: 10px; letter-spacing: 1px;
+  padding: 4px 8px; border-radius: 6px;
+  white-space: nowrap; pointer-events: none;
+  border: 1px solid var(--border); z-index: 200;
+  font-family: 'Rajdhani', sans-serif;
+}
